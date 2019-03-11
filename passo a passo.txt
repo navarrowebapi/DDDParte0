@@ -1,0 +1,86 @@
+1. Criar as pastas 
+
+- PaymentContext.Domain (domínio rico)
+- PaymentContext.Shared (itens que serão compartilhados dentro do contexto para vários domínios)
+- PaymentContext.Tests (Testes de unidade)
+
+
+2. Criar a Solução do Sistema
+dotnew new sln 
+
+3. Criar projetos Class Library para cada Pasta, exceto para Tests
+dotnet new classlib
+
+4. No projeto Test, criar um projeto de teste
+dotnet new mstest
+
+5. Adicionar os projetos à Solution
+- voltar à pasta base: DDDCommerce
+dotnet sln add PaymentContext.Domain/PaymentContext.Domain.csproj
+dotnet sln add PaymentContext.Shared/PaymentContext.Shared.csproj
+dotnet sln add PaymentContext.Tests/PaymentContext.Tests.csproj
+
+6. Restaurar os pacotes e Build
+dotnet restore
+dotnet build
+
+7. Adicionando referências de Projetos
+
+O Domínio referencia o Shared
+O Shared não referencia ninguém
+O Teste referencia os 2.
+
+- Adicionar o projeto Shared dentro do projeto de Domain
+-- entrar na pasta do Domain
+dotnet add reference ../PaymentContext.Shared/PaymentContext.Shared.csproj
+
+-- entrar na pasta do Test
+dotnet add reference ../PaymentContext.Shared/PaymentContext.Shared.csproj
+dotnet add reference ../PaymentContext.Domain/PaymentContext.Domain.csproj
+
+*dotnet build
+
+----------------------------------------------------------
+
+Criando as Entidades
+
+- deletar a Class1.cs do Domain
+- Criar a pasta Entities dentro do projeto Domain
+
+Story: "Um aluno possui uma assinatura e faz um Pagamento mensal"
+
+1. Criar a Entidade Student, Subscription, Payment dentro da pasta acima.
+ Informações deste Contexto para Estudante: Nome, Sobrenome, Email, Documento
+ Informações de uma Assinatura(Subscription): 
+	
+
+------------------------------------------------------------
+
+NO VS2017
+Arquivo, Novo, Projeto, Outros Projetos, Blank Solution
+
+
+Uma estratégia é criar uma pasta de solução para CADA Sub-domínio, Domínio é o problema central a ser resolvido.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
